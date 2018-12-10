@@ -1,0 +1,26 @@
+---
+  - hosts: all
+    become: true
+
+    tasks:
+      - name: Yum update all packages
+        yum:
+          name: "*"
+          state: latest
+
+      - name: Remove Sendmail
+        yum:
+          name: sendmail
+          state: absent
+
+      - name: Remove apache
+        yum:
+          name: httpd
+          state: absent
+
+      - name: Install FirewallD
+        yum:
+          name: firewalld
+          state: present
+
+
