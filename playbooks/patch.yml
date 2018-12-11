@@ -17,10 +17,3 @@
         yum:
           name: httpd
           state: absent
-
-      - name: Install FirewallD
-        yum:
-          name: firewalld
-          state: present
-
-

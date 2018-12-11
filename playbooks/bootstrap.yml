@@ -50,6 +50,39 @@
         hostname:
           name: minecraft.danielrussell.org
 
+      - name: Install Firewalld
+        yum:
+          name: firewalld
+          state: latest
+
+      - name: Turn on and Enable Firewalld
+        service:
+          name: firewalld
+          state: started
+          enabled: yes
+
+      - name: Disable IPv6 with sysctl
+        sysctl: name={{ item }} value=1 state=present
+        with_items:
+          - net.ipv6.conf.all.disable_ipv6
+          - net.ipv6.conf.default.disable_ipv6
+          - net.ipv6.conf.lo.disable_ipv6
+
+      - name: Patch all packages
+        yum:
+          name: "*"
+          state: latest
+
+      - name: Remove Sendmail
+        yum:
+          name: sendmail
+          state: absent
+
+      - name: Remove apache
+        yum:
+          name: httpd
+          state: absent
+
 
     handlers:
       - name: restart ssh
