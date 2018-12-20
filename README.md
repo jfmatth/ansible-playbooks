@@ -1,4 +1,4 @@
-# Playbooks for Minecraft VPS
+# Playbooks for Linux VPS
 
 Build a VPS and update hosts.ini, then run playbooks below
 
