@@ -46,9 +46,9 @@
           line: "PasswordAuthentication no"
         notify: restart ssh
 
-      - name: Set Hostname
-        hostname:
-          name: minecraft.danielrussell.org
+#      - name: Set Hostname
+#        hostname:
+#          name: {{ hostname }}
 
       - name: Install Firewalld
         yum:
