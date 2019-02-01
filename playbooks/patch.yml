@@ -1,0 +1,32 @@
+---
+  - hosts: all
+    become: true
+
+    tasks:
+#      - name: Install Hyper-V daemons
+#        yum:
+#          name: hyperv-daemons
+#          state: present
+
+      - name: Remove Sendmail
+        yum:
+          name: sendmail
+          state: absent
+
+      - name: Remove Postfix
+        yum:
+          name: postfix
+          state: absent
+
+      - name: Remove apache
+        yum:
+          name: httpd
+          state: absent
+
+      - name: Patch everything
+        yum:
+          name: "*"
+          state: latest
+
+      - name: Reboot
+        reboot:
