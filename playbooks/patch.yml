@@ -3,30 +3,27 @@
     become: true
 
     tasks:
-#      - name: Install Hyper-V daemons
-#        yum:
-#          name: hyperv-daemons
-#          state: present
 
       - name: Remove Sendmail
-        yum:
+        apt:
           name: sendmail
           state: absent
 
       - name: Remove Postfix
-        yum:
+        apt:
           name: postfix
           state: absent
 
-      - name: Remove apache
-        yum:
-          name: httpd
+      - name: Remove apache2
+        apt:
+          name: apache2
           state: absent
 
       - name: Patch everything
-        yum:
+        apt:
           name: "*"
           state: latest
+          force_apt_get: true
 
       - name: Reboot
         reboot:

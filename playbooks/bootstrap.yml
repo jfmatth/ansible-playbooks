@@ -24,6 +24,7 @@
         user: 
           name: jfmatth
           group: wheel
+          shell: /bin/bash
 
       - name: Put Jfmatth SSH key on server
         authorized_key:
