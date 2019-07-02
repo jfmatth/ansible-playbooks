@@ -5,25 +5,24 @@
     tasks:
 
       - name: Remove Sendmail
-        apt:
+        package:
           name: sendmail
           state: absent
 
       - name: Remove Postfix
-        apt:
+        package:
           name: postfix
           state: absent
 
       - name: Remove apache2
-        apt:
+        package:
           name: apache2
           state: absent
 
       - name: Patch everything
-        apt:
+        yum:
           name: "*"
           state: latest
-          force_apt_get: true
 
       - name: Reboot
         reboot:

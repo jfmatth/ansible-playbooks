@@ -6,7 +6,7 @@ Build a VPS and update hosts.ini, then run playbooks below
 ## bootstrap.yml - Initial VPS bootstrap playbook after VM is built on VPS hosting
 
 ```
-ansible-playbook bootstrap.yml -k -u root
+ansible-playbook bootstrap.yml -k -b (-u if needed)
 ```
 
 ## patch.yml - Update server and setup 

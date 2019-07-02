@@ -3,7 +3,7 @@
 
     tasks:
       - name: Make sure we have sudo installed
-        yum:
+        package:
           name: sudo
           state: latest
 
@@ -47,7 +47,7 @@
         notify: restart ssh
 
       - name: Install Firewalld
-        yum:
+        package:
           name: firewalld
           state: latest
 
