@@ -19,10 +19,19 @@
           name: apache2
           state: absent
 
+      - name: Install Hyper-V tools
+        package:
+          name: linux-azure
+          state: latest
+        when: hyperv
+
       - name: Patch everything
-        yum:
+        apt:
           name: "*"
           state: latest
+          force_apt_get: true
+
+        when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
       - name: Reboot
         reboot:
