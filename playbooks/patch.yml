@@ -2,6 +2,10 @@
   - hosts: all
     become: true
 
+
+    vars:
+      hyperv: false
+
     tasks:
 
       - name: Remove Sendmail
@@ -30,7 +34,6 @@
           name: "*"
           state: latest
           force_apt_get: true
-
         when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
       - name: Reboot

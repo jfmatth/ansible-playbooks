@@ -51,6 +51,17 @@
           name: firewalld
           state: latest
 
+      - name: Install Fail2Ban
+        package:
+          name: fail2ban
+          state: latest
+
+      - name: Enable, Start Fail2Ban
+        service:
+          name: fail2ban
+          state: started
+          enabled: yes
+
       - name: Turn on and Enable Firewalld
         service:
           name: firewalld

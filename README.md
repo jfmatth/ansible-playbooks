@@ -7,9 +7,14 @@ Build a VPS and update hosts.ini, then run playbooks below
 
 ```
 ansible-playbook bootstrap.yml -k -b (-u if needed)
+
+-k = Ask Password
+-b = Become
+-u = User
 ```
 
-## patch.yml - Update server and setup 
+
+## patch.yml - Update server and setup
 
 You must run ssh-agent to load your ssh key into memory
 ```

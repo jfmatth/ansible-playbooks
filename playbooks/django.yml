@@ -10,17 +10,19 @@
           state: latest
 
 
-      - name: Add django
+      - name: Add django user
         user: 
           name: django
           shell: /bin/bash
 
-      - firewalld:
+      - name: Allow http via Firewall
+        firewalld:
           service: http
           permanent: yes
           state: enabled
 
-      - git:
+      - name: Clone the repo
+        git:
           repo: 'https://github.com/jfmatth/aim-django.git'
           version: movetodev
           dest: /home/django/mysite
@@ -34,7 +36,19 @@
         become: yes
         become_user: django
 
-      - file:
+      - name: uwsgi symlink
+        file:
           src: /home/django/mysite/uwsgi_mysite.ini
           dest: /etc/uwsgi/apps-enabled/uwsgi_mysite.ini
           state: link
+
+      - name: nginx symlink
+        file:
+          src: /home/django/mysite/nginx_mysite.conf
+          dest: /etc/nginx/sites-enabled/nginx_mysite.conf
+          state: link
+
+      - name: remove default site from nginx
+        file:
+          path: /etc/nginx/sites-enabled/default
+          state: absent
