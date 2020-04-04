@@ -1,5 +1,7 @@
 ---
   - hosts: all
+    vars:
+      install_firewalld: false
 
     tasks:
       - name: Make sure we have sudo installed
@@ -50,6 +52,14 @@
         package:
           name: firewalld
           state: latest
+        when: install_firewalld
+
+      - name: Turn on and Enable Firewalld
+        service:
+          name: firewalld
+          state: started
+          enabled: yes
+        when: install_firewalld
 
       - name: Install Fail2Ban
         package:
@@ -59,12 +69,6 @@
       - name: Enable, Start Fail2Ban
         service:
           name: fail2ban
-          state: started
-          enabled: yes
-
-      - name: Turn on and Enable Firewalld
-        service:
-          name: firewalld
           state: started
           enabled: yes
 
